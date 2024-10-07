@@ -8,7 +8,7 @@ import {
 } from '@material-tailwind/react';
 import InputAmount from './Input/InputAmount';
 
-const Modal = ({ open, handleOpen, category }) => {
+const Modal = ({ open, handleOpen, category, onSubmit }) => {
   return (
     <Dialog open={open} handler={handleOpen}>
       <DialogHeader>{category.category}</DialogHeader>
@@ -24,7 +24,7 @@ const Modal = ({ open, handleOpen, category }) => {
         >
           <span>Cancel</span>
         </Button>
-        <Button variant="gradient" color="green" onClick={handleOpen}>
+        <Button variant="gradient" color="green" onClick={onSubmit}>
           <span>Confirm</span>
         </Button>
       </DialogFooter>

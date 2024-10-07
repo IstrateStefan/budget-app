@@ -1,5 +1,16 @@
 const mongoose = require('mongoose');
 
+const actionSchema = new mongoose.Schema({
+  category: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+});
+
 const budgetHistorySchema = new mongoose.Schema({
   budgetId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -7,16 +18,20 @@ const budgetHistorySchema = new mongoose.Schema({
     required: true,
   },
   action: {
-    type: String,
+    type: actionSchema,
     required: true,
   },
   amountChange: {
     type: Number,
     required: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const BudgetHistory = mongoose.Model(
+const BudgetHistory = mongoose.model(
   'BudgetHistory',
   budgetHistorySchema,
   'budgetsHistory'

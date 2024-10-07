@@ -1,4 +1,5 @@
 import { useState, useMemo, useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardHeader, CardBody } from '@material-tailwind/react';
 import { GiMedicines } from 'react-icons/gi';
 import { MdOutlineLocalGroceryStore } from 'react-icons/md';
@@ -15,10 +16,13 @@ import { FaRegMoneyBillAlt } from 'react-icons/fa';
 import { CiCoinInsert } from 'react-icons/ci';
 import { InputAmountContext } from '../Input/InputAmountContext';
 import Modal from '../Modal';
+import { changeBudgetAmount } from '../../store/budget/budgetSlice';
 
 const CategoryItems = ({ category }) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const { value } = useContext(InputAmountContext);
+  const { value, setValue } = useContext(InputAmountContext);
+  const userId = useSelector((state) => state.user.user._id);
 
   const categoryIcons = useMemo(
     () => ({
@@ -72,9 +76,17 @@ const CategoryItems = ({ category }) => {
   const categoryIcon = categoryIcons[category._id];
 
   const handleOpen = () => {
-    console.log(value);
     setOpen((prevOpen) => !prevOpen);
   };
+
+  const onSubmit = () => {
+    if (value) {
+      handleOpen();
+      dispatch(changeBudgetAmount({ userId, category, amount: value }));
+      setValue(0);
+    }
+  };
+
   return (
     <>
       <div onClick={handleOpen} variant="gradient">
@@ -92,7 +104,14 @@ const CategoryItems = ({ category }) => {
         </Card>
       </div>
 
-      {<Modal open={open} handleOpen={handleOpen} category={category} />}
+      {
+        <Modal
+          open={open}
+          handleOpen={handleOpen}
+          category={category}
+          onSubmit={onSubmit}
+        />
+      }
     </>
   );
 };

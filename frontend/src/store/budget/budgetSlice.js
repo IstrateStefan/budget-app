@@ -18,12 +18,14 @@ export const getBudget = createAsyncThunk(
 
 export const changeBudgetAmount = createAsyncThunk(
   'budget/changeBudgetAmount',
-  async ({ userId, type, amount }, { rejectWithValue }) => {
+  async ({ userId, category, amount }, { rejectWithValue }) => {
     try {
-      console.log(userId);
-      console.log(type);
-      console.log(amount);
-      // const response = await axios.post(`${API_URL}/budget/${userId}`, {});
+      const response = await axios.post(`${API_URL}/budget/${userId}`, {
+        category,
+        amount,
+      });
+
+      return response.data;
     } catch (error) {
       return rejectWithValue({ ...(error.response && error.response.data) });
     }
