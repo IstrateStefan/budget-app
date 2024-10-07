@@ -1,0 +1,54 @@
+[
+  {
+    "category": "Grocery",
+    "type": "Expense"
+  },
+  {
+    "category": "Food & Drink",
+    "type": "Expense"
+  },
+  {
+    "category": "Clothes",
+    "type": "Expense"
+  },
+  {
+    "category": "Hotel",
+    "type": "Expense"
+  },
+  {
+    "category": "Medicine",
+    "type": "Expense"
+  },
+  {
+    "category": "Fule",
+    "type": "Expense"
+  },
+  {
+    "category": "Gifts",
+    "type": "Expense"
+  },
+  {
+    "category": "Travel",
+    "type": "Expense"
+  },
+  {
+    "category": "Kids",
+    "type": "Expense"
+  },
+  {
+    "category": "Salary",
+    "type": "Income"
+  },
+  {
+    "category": "Reserve",
+    "type": "Income"
+  },
+  {
+    "category": "Dividens",
+    "type": "Income"
+  },
+  {
+    "category": "Bonuses",
+    "type": "Income"
+  }
+]
